@@ -7,8 +7,8 @@
 
 module.exports = (robot) ->
 
-    robot.hear /https:\/\/dyry.me\/(.*)/, (msg) ->
-        hash = msg.match[1]
+    robot.hear /(https?:\/\/)?dyry.me\/([a-zA-Z0-9]{5})/, (msg) ->
+        hash = msg.match[2]
 
         robot.http("https://dyry.me/api/v1/lookup/hash/#{hash}").get() (err, res, body) ->
             data = JSON.parse(body)
